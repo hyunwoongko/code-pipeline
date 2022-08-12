@@ -9,7 +9,7 @@ phases:
       - $(aws ecr get-login --no-include-email --region us-east-2)
   build:
     commands:
-      - docker build -t cicd:latest .
+      - sudo docker build -t cicd:latest .
   post_build:
     commands:
       - docker tag cicd:latest 539746929196.dkr.ecr.us-east-2.amazonaws.com/cicd:latest
