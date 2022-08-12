@@ -6,7 +6,7 @@ phases:
       docker: 20
     commands:
       - aws --version
-      - $(aws ecr get-login-password --region us-east-2 | docker login --username AWS --password-stdin 539746929196.dkr.ecr.us-east-2.amazonaws.com)
+      - $(aws ecr get-login --no-include-email --region us-east-2)
   build:
     commands:
       - docker build -t cicd:latest .
