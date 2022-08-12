@@ -1,5 +1,7 @@
 FROM tiangolo/uvicorn-gunicorn:python3.9
 
+COPY ./ ./
+
 ENV PORT=7001
 ENV WORKERS=4
 
