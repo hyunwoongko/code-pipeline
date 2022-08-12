@@ -9,12 +9,12 @@ phases:
       - $(aws ecr get-login-password --region us-east-2 | docker login --username AWS --password-stdin 539746929196.dkr.ecr.us-east-2.amazonaws.com)
   build:
     commands:
-      - docker build -t test-app:latest .
+      - docker build -t cicd:latest .
   post_build:
     commands:
-      - docker tag test-app:latest 539746929196.dkr.ecr.us-east-2.amazonaws.com/test-app:latest
-      - docker push 539746929196.dkr.ecr.us-east-2.amazonaws.com/test-app:latest
+      - docker tag cicd:latest 539746929196.dkr.ecr.us-east-2.amazonaws.com/cicd:latest
+      - docker push 539746929196.dkr.ecr.us-east-2.amazonaws.com/cicd:latest
       - echo Writing image definitions file...
-      - printf '[{"name":"test-app-container","imageUri":"%s"}]' 539746929196.dkr.ecr.us-east-2.amazonaws.com/test-app:latest > imagedefinitions.json
+      - printf '[{"name":"cicd-container","imageUri":"%s"}]' 539746929196.dkr.ecr.us-east-2.amazonaws.com/cicd:latest > imagedefinitions.json
 artifacts:
   files: imagedefinitions.json
