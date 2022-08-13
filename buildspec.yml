@@ -9,10 +9,10 @@ phases:
       - $(aws ecr get-login --no-include-email --region us-east-2)
   build:
     commands:
-      - sudo docker build -t cicd:latest .
+      - docker build -t cicd:latest .
+      - docker tag cicd:latest 539746929196.dkr.ecr.us-east-2.amazonaws.com/cicd:latest
   post_build:
     commands:
-      - docker tag cicd:latest 539746929196.dkr.ecr.us-east-2.amazonaws.com/cicd:latest
       - docker push 539746929196.dkr.ecr.us-east-2.amazonaws.com/cicd:latest
       - echo Writing image definitions file...
       - printf '[{"name":"cicd-container","imageUri":"%s"}]' 539746929196.dkr.ecr.us-east-2.amazonaws.com/cicd:latest > imagedefinitions.json
