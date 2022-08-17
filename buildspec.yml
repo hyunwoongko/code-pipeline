@@ -7,8 +7,6 @@ phases:
     commands:
       - aws --version
       - $(aws ecr get-login --no-include-email --region us-east-2)
-      - echo checkout remote branch named $CODEBUILD_RESOLVED_SOURCE_VERSION
-      - git checkout $CODEBUILD_RESOLVED_SOURCE_VERSION
   build:
     commands:
       - docker build -t cicd-test:latest .
