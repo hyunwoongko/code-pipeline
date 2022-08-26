@@ -5,7 +5,7 @@ app = FastAPI()
 
 @app.get("/")
 def index():
-    return "Server is on !!!"
+    return "TUKITAKA is on !!!"
 
 
 @app.get("/health")
