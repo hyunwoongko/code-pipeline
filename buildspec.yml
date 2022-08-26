@@ -9,12 +9,12 @@ phases:
       - $(aws ecr get-login --no-include-email --region us-east-2)
   build:
     commands:
-      - docker build -t cicd:latest .
-      - docker tag cicd:latest 539746929196.dkr.ecr.us-east-2.amazonaws.com/cicd:latest
+      - docker build -t cicd-test:latest .
+      - docker tag cicd-test:latest 539746929196.dkr.ecr.us-east-2.amazonaws.com/cicd-test:latest
   post_build:
     commands:
-      - docker push 539746929196.dkr.ecr.us-east-2.amazonaws.com/cicd:latest
+      - docker push 539746929196.dkr.ecr.us-east-2.amazonaws.com/cicd-test:latest
       - echo Writing image definitions file...
-      - printf '[{"name":"cicd-container","imageUri":"%s"}]' 539746929196.dkr.ecr.us-east-2.amazonaws.com/cicd:latest > imagedefinitions.json
+      - printf '[{"name":"cicd-test-container","imageUri":"%s"}]' 539746929196.dkr.ecr.us-east-2.amazonaws.com/cicd-test:latest > imagedefinitions.json
 artifacts:
   files: imagedefinitions.json
